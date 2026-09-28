@@ -9,10 +9,13 @@
   src: url("../assets/fonts/manrope-latin-wght-normal.woff2") format("woff2"); }
 
 :root {
-  --navy: #202421;
-  --bone: #F3EBDD;
-  --carbon: #243C32;
-  --steel: #B6FF00;
+  /* Base neutra (como las grandes agencias): crema + casi negro. El verde profundo es el color de marca
+     y aparece en momentos clave (llamada final, halo del 3D, detalles); el neón es solo una chispa. */
+  --navy: #1C201D;      /* segundo oscuro */
+  --bone: #F3EBDD;      /* marfil cálido */
+  --carbon: #141715;    /* casi negro con matiz verde: fondos oscuros y texto sobre claro */
+  --steel: #B6FF00;     /* neón: acentos mínimos */
+  --green: #243C32;     /* verde profundo de marca */
 
   --ink-soft: color-mix(in srgb, var(--carbon) 74%, var(--bone));   /* texto secundario sobre hueso */
   --line-dark: color-mix(in srgb, var(--bone) 20%, transparent);
@@ -67,6 +70,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- Temas ---------- */
 .theme-dark  { background: var(--carbon); color: var(--bone); --btn-bg: var(--bone); --btn-fg: var(--carbon); --btn-hover: var(--steel); --label: var(--muted); }
 .theme-navy  { background: var(--navy);   color: var(--bone); --btn-bg: var(--bone); --btn-fg: var(--carbon); --btn-hover: var(--steel); --label: var(--muted); }
+.theme-green { background: var(--green);  color: var(--bone); --btn-bg: var(--bone); --btn-fg: var(--carbon); --btn-hover: var(--steel); --label: var(--muted); }
 .theme-light { background: var(--bone);   color: var(--carbon); --btn-bg: var(--navy); --btn-fg: var(--bone); --btn-hover: var(--carbon); --label: var(--navy); }
 .section { padding-block: var(--section-y); position: relative; overflow: clip; }
 
@@ -437,6 +441,7 @@ em.acc { font-family: var(--serif); font-style: italic; color: var(--accent, var
 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .16em; margin-bottom: -.16em; }
 .w > i { display: inline-block; font-style: normal; transform: translateY(118%); transition: transform 1s var(--ease); transition-delay: calc(var(--k, 0) * 55ms); }
 .is-in .w > i { transform: none; }
+.acc .w > i { font-style: italic; }   /* la palabra destacada conserva la cursiva al animarse */
 [data-split="scrub"] .w { display: inline; overflow: visible; padding: 0; margin: 0; opacity: .2; transition: opacity .35s linear; }
 [data-split="scrub"] .w.on { opacity: 1; }
 .js.split-pending [data-split] { visibility: hidden; }
@@ -564,7 +569,7 @@ html[lang="fr"] h1 .acc { white-space: nowrap; }
    Portada 3D: un objeto por texto (bombilla, lente, chip, barras, símbolo MT) — ver src/intro3d.js.
    Al bajar, el objeto gira y se transforma en el siguiente; los textos cambian con data-step.
    ===================================================================== */
-.intro { position: relative; background: radial-gradient(120% 80% at 50% 30%, #2b4a3d 0%, var(--carbon) 55%, #182a22 100%); }
+.intro { position: relative; background: radial-gradient(90% 70% at 70% 35%, #1f3329 0%, var(--carbon) 60%, #0e100f 100%); }
 .intro__stick { position: relative; min-height: 100svh; display: grid; grid-template-rows: auto 1fr; align-items: center; overflow: hidden;
   padding: calc(var(--header-h) + 12px) 0 calc(var(--dock-h) + 24px); }
 
@@ -588,6 +593,7 @@ html[lang="fr"] h1 .acc { white-space: nowrap; }
 /* Textos: portada y pasos comparten el mismo lugar */
 .intro__copy { position: relative; z-index: 1; display: grid; }
 .intro__hero, .intro__steps { grid-area: 1 / 1; }
+.intro__steps { align-self: center; }
 .intro__hero .lead { margin-top: 18px; color: var(--muted); }
 .intro__hero .lead strong { color: var(--bone); }
 .intro h1 { font-size: clamp(2.6rem, 11vw, 7rem); line-height: .95; }
@@ -612,11 +618,14 @@ html[lang="fr"] .intro h1 { font-size: clamp(2.4rem, 10vw, 6.4rem); }
   .js .intro:not([data-step="0"]) .intro__hero { pointer-events: none; visibility: hidden; }
   .js .intro:not([data-step="0"]) .intro__cue { visibility: hidden; }
   .js .intro__line { transform: scaleX(var(--fin, 0)); transform-origin: 0 50%; }
+  .intro__stage canvas { transition: transform .9s var(--ease); transform-origin: 50% 40%; }
+  .js .intro:not([data-step="0"]) .intro__stage canvas { transform: scale(1.22) translateY(6%); }
 }
 
 @media (min-width: 900px) {
   .intro__stick { grid-template-rows: 1fr; grid-template-columns: 1fr; padding-bottom: 40px; }
   .intro__stage { position: absolute; right: 0; top: 0; bottom: 0; width: 56%; height: auto; margin: 0; }
+  .js .intro:not([data-step="0"]) .intro__stage canvas { transform: none; }
   .intro__glow { left: auto; right: -10vw; top: 50%; transform: translate(0, -50%); width: 60vw; }
   .intro__copy { width: min(100% - 2 * var(--gutter), var(--max)); }
   .intro__hero, .intro__steps { max-width: 44%; }
@@ -654,8 +663,9 @@ html[lang="fr"] .intro h1 { font-size: clamp(2.4rem, 10vw, 6.4rem); }
 .page-hero { position: relative; overflow: clip; padding: calc(var(--header-h) + clamp(56px, 12vw, 140px)) 0 calc(clamp(56px, 9vw, 120px) + var(--r)); }
 .page-hero h1 { font-size: clamp(3rem, 13vw, 7rem); max-width: 12em; }
 html[lang="fr"] .page-hero h1 { font-size: clamp(2.7rem, 11.5vw, 6.4rem); }
-.page-hero .lead { margin-top: clamp(20px, 3vw, 32px); color: var(--muted); }
-.page-hero .lead strong { color: var(--bone); }
+.page-hero .lead { margin-top: clamp(20px, 3vw, 32px); color: var(--ink-soft); }
+.page-hero .lead strong { color: var(--carbon); }
+.page-hero.theme-light .page-hero__arcs { color: var(--green); opacity: .08; }
 .page-hero__arcs { position: absolute; right: -36vmin; top: -10vmin; width: 90vmin; height: 90vmin; color: var(--sand); opacity: .12; pointer-events: none; }
 .page-hero__inner { position: relative; }
 .page .services { padding-top: calc(var(--r) + 24px); }
