@@ -121,6 +121,26 @@
     </div>
   </footer>
 
+  <button class="ai-launch" type="button" aria-haspopup="dialog" aria-controls="ai" data-ai-open>
+    <span class="ai-launch__dot" aria-hidden="true"></span><span class="ai-launch__text">Got a question?</span>
+  </button>
+  <dialog class="ai" id="ai" aria-labelledby="ai-title">
+    <div class="ai__panel">
+      <header class="ai__head">
+        <p class="ai__title" id="ai-title">MARKETEAM assistant <span class="ai__badge">AI</span></p>
+        <button class="ai__close" type="button" data-ai-close aria-label="Close">×</button>
+      </header>
+      <div class="ai__log" data-ai-log role="log" aria-live="polite"></div>
+      <div class="ai__chips" data-ai-chips><button type="button" class="ai__chip">What does MARKETEAM do?</button><button type="button" class="ai__chip">I own a restaurant</button><button type="button" class="ai__chip">How do you work?</button></div>
+      <form class="ai__form" data-ai-form>
+        <label class="sr-only" for="ai-input">Type your question…</label>
+        <textarea id="ai-input" rows="1" maxlength="800" placeholder="Type your question…" required></textarea>
+        <button class="ai__send" type="submit" aria-label="Send">→</button>
+      </form>
+      <p class="ai__notice">AI assistant: it can make mistakes. Don’t share personal information. <a href="/en/confidentialite/">Privacy</a></p>
+    </div>
+  </dialog>
+
   <nav class="dock" aria-label="Main navigation">
     <button class="dock__menu" type="button" aria-haspopup="dialog" aria-controls="sheet">
       <span class="dock__bars" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -147,7 +167,7 @@
     </div>
   </dialog>
 
-  <script type="application/json" id="site-config">{"lang":"en","ui":{"name":"Please enter your name.","contactEmpty":"Enter an email or a phone number so we can reply.","contactBad":"Enter a valid email (name@email.com) or a phone number with at least 8 digits.","type":"Select your industry.","message":"Tell us a bit more (at least 10 characters).","consent":"Check the box so we can process your request.","alertOne":"Please check the highlighted field before sending.","alertMany":"Please check the {n} highlighted fields before sending.","noEndpoint":"We can’t receive requests from this form yet, so your message was not sent.","noEndpointDirect":" You can reach us through the contact options in this section.","sendError":"We couldn’t send your request. Check your connection and try again; your details are still in the form.","sending":"Sending…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28"}</script>
+  <script type="application/json" id="site-config">{"lang":"en","ui":{"name":"Please enter your name.","contactEmpty":"Enter an email or a phone number so we can reply.","contactBad":"Enter a valid email (name@email.com) or a phone number with at least 8 digits.","type":"Select your industry.","message":"Tell us a bit more (at least 10 characters).","consent":"Check the box so we can process your request.","alertOne":"Please check the highlighted field before sending.","alertMany":"Please check the {n} highlighted fields before sending.","noEndpoint":"We can’t receive requests from this form yet, so your message was not sent.","noEndpointDirect":" You can reach us through the contact options in this section.","sendError":"We couldn’t send your request. Check your connection and try again; your details are still in the form.","sending":"Sending…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28","ai":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/assistant","intro":"Hi! I can explain what MARKETEAM does and help you find the right solution for your business. Where should we start?","cta":"Talk to the team","thinking":"The assistant is typing…","error":"The assistant isn’t available right now. You can reach us through the contact form.","limit":"You’ve reached today’s message limit. The team can reply through the contact form.","contact":"/en/contact/"}}</script>
   <script src="/js/main.js" defer></script>
 </body>
 </html>

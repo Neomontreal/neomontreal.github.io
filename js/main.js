@@ -313,6 +313,64 @@
     box.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1)); }, { passive: true });
   }
 
+  /* ---------- Asistente IA (burbuja) ----------
+     La conversación vive solo en este navegador (sessionStorage) y se envía a la función segura de Supabase.
+     Las respuestas se pintan como texto (nunca HTML). */
+  const AI = CFG.ai, aiBox = $('#ai');
+  if (AI && aiBox && typeof aiBox.showModal === 'function') {
+    const log = $('[data-ai-log]', aiBox), formAi = $('[data-ai-form]', aiBox), input = $('#ai-input'), sendBtn = $('.ai__send', aiBox), chips = $('[data-ai-chips]', aiBox);
+    const KEY = 'mt_ai_' + (CFG.lang || 'fr');
+    let history = [];
+    try { history = JSON.parse(sessionStorage.getItem(KEY) || '[]'); } catch { history = []; }
+    const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify(history.slice(-20))); } catch { /* sin almacenamiento */ } };
+
+    const bubble = (role, text, cls = '') => {
+      const el = document.createElement('p');
+      el.className = `ai__msg ai__msg--${role === 'user' ? 'me' : 'bot'} ${cls}`.trim();
+      el.textContent = text; log.append(el); log.scrollTop = log.scrollHeight; return el;
+    };
+    const ctaLink = () => {
+      const a = document.createElement('a'); a.className = 'btn btn--primary ai__cta'; a.href = AI.contact; a.textContent = AI.cta + ' →';
+      log.append(a); log.scrollTop = log.scrollHeight;
+    };
+    const paint = () => {
+      log.replaceChildren(); bubble('assistant', AI.intro);
+      history.forEach(m => { bubble(m.role, m.content); if (m.cta) ctaLink(); });
+      chips.hidden = history.length > 0;
+    };
+
+    let busy = false;
+    const ask = async (text) => {
+      text = text.trim().slice(0, 800);
+      if (!text || busy) return;
+      busy = true; sendBtn.disabled = true; chips.hidden = true;
+      history.push({ role: 'user', content: text }); bubble('user', text); save();
+      const wait = bubble('assistant', AI.thinking, 'ai__msg--wait');
+      try {
+        const res = await fetch(AI.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ lang: CFG.lang, messages: history.slice(-12).map(({ role, content }) => ({ role, content })) }) });
+        const data = await res.json().catch(() => ({}));
+        wait.remove();
+        if (!res.ok || !data.ok) { bubble('assistant', res.status === 429 ? AI.limit : AI.error); if (res.status === 429 || res.status >= 500) ctaLink(); return; }
+        history.push({ role: 'assistant', content: data.reply, cta: !!data.cta }); save();
+        bubble('assistant', data.reply); if (data.cta) ctaLink();
+      } catch {
+        wait.remove(); bubble('assistant', AI.error); ctaLink();
+      } finally { busy = false; sendBtn.disabled = false; input.focus(); }
+    };
+
+    const openAi = () => { paint(); aiBox.showModal(); html.classList.add('no-scroll'); setTimeout(() => input.focus(), 50); };
+    const closeAi = () => { aiBox.close(); html.classList.remove('no-scroll'); };
+    $('[data-ai-open]').addEventListener('click', openAi);
+    $('[data-ai-close]', aiBox).addEventListener('click', closeAi);
+    aiBox.addEventListener('cancel', e => { e.preventDefault(); closeAi(); });
+    aiBox.addEventListener('click', e => { if (e.target === aiBox) closeAi(); });
+    $$('.ai__chip', aiBox).forEach(c => c.addEventListener('click', () => ask(c.textContent)));
+    formAi.addEventListener('submit', e => { e.preventDefault(); const v = input.value; input.value = ''; input.style.height = ''; ask(v); });
+    input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); formAi.requestSubmit(); } });
+    input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 140) + 'px'; });
+  }
+
   /* ---------- Llegar desde un submenú (/fr/secteurs/#secteur-…): ir a la sección cuando la página ya se armó ---------- */
   if (location.hash.length > 1) {
     const go = () => { const t = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - (parseFloat(getComputedStyle(t).scrollMarginTop) || 0), behavior: 'instant' }); };

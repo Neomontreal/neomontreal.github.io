@@ -85,9 +85,10 @@
         <article class="legal__block"><h2>05. Qui y a accès</h2><div class="legal__text"><p>Seuls les membres autorisés de l’équipe MARKETEAM y ont accès, au moyen d’un accès protégé par mot de passe. Nos fournisseurs d’hébergement n’utilisent pas vos renseignements pour leurs propres fins.</p></div></article>
         <article class="legal__block"><h2>06. Combien de temps nous les gardons</h2><div class="legal__text"><p>Le temps nécessaire pour traiter votre demande et, le cas échéant, gérer notre relation d’affaires. Les demandes sans suite sont <strong>supprimées après 24 mois</strong>.</p></div></article>
         <article class="legal__block"><h2>07. Témoins (cookies)</h2><div class="legal__text"><p>Ce site utilise un seul témoin fonctionnel, qui retient la langue que vous choisissez. <strong>Aucun témoin publicitaire</strong> ni outil de mesure d’audience n’est utilisé. Si cela change, nous vous demanderons d’abord votre consentement.</p></div></article>
-        <article class="legal__block"><h2>08. Vos droits</h2><div class="legal__text"><p>Vous pouvez demander d’accéder à vos renseignements, de les corriger ou de les supprimer, et retirer votre consentement. Nous répondons dans un délai de 30 jours.</p><p>Vous pouvez aussi porter plainte auprès de la <strong>Commission d’accès à l’information du Québec</strong>.</p></div></article>
-        <article class="legal__block"><h2>09. Sécurité</h2><div class="legal__text"><p>Les échanges avec le site sont chiffrés (HTTPS) et l’accès aux demandes reçues est limité et protégé. Aucun système n’est parfait : en cas d’incident de confidentialité, nous agirons conformément à la loi.</p></div></article>
-        <article class="legal__block"><h2>10. Modifications</h2><div class="legal__text"><p>Nous pouvons mettre cette politique à jour. La date de la dernière mise à jour figure en haut de cette page.</p></div></article>
+        <article class="legal__block"><h2>08. Assistant IA</h2><div class="legal__text"><p>Le site propose un assistant d’intelligence artificielle qui répond aux questions sur MARKETEAM. Vos messages sont transmis à <strong>OpenAI</strong> (États-Unis) uniquement pour générer la réponse, avec la demande de ne pas les conserver pour entraîner ses modèles.</p><p>MARKETEAM <strong>ne conserve pas vos conversations</strong> : nous gardons seulement un compteur anonyme de messages par jour pour limiter les abus. N’y inscrivez pas de renseignements personnels. Les réponses sont générées automatiquement et peuvent contenir des erreurs.</p></div></article>
+        <article class="legal__block"><h2>09. Vos droits</h2><div class="legal__text"><p>Vous pouvez demander d’accéder à vos renseignements, de les corriger ou de les supprimer, et retirer votre consentement. Nous répondons dans un délai de 30 jours.</p><p>Vous pouvez aussi porter plainte auprès de la <strong>Commission d’accès à l’information du Québec</strong>.</p></div></article>
+        <article class="legal__block"><h2>10. Sécurité</h2><div class="legal__text"><p>Les échanges avec le site sont chiffrés (HTTPS) et l’accès aux demandes reçues est limité et protégé. Aucun système n’est parfait : en cas d’incident de confidentialité, nous agirons conformément à la loi.</p></div></article>
+        <article class="legal__block"><h2>11. Modifications</h2><div class="legal__text"><p>Nous pouvons mettre cette politique à jour. La date de la dernière mise à jour figure en haut de cette page.</p></div></article>
       </div>
     </section>
   </main>
@@ -104,6 +105,26 @@
       <p class="concept-note">Les images de ce site sont des visualisations conceptuelles de la marque; elles ne correspondent pas à des clients ou à des travaux réels.</p>
     </div>
   </footer>
+
+  <button class="ai-launch" type="button" aria-haspopup="dialog" aria-controls="ai" data-ai-open>
+    <span class="ai-launch__dot" aria-hidden="true"></span><span class="ai-launch__text">Une question?</span>
+  </button>
+  <dialog class="ai" id="ai" aria-labelledby="ai-title">
+    <div class="ai__panel">
+      <header class="ai__head">
+        <p class="ai__title" id="ai-title">Assistant MARKETEAM <span class="ai__badge">IA</span></p>
+        <button class="ai__close" type="button" data-ai-close aria-label="Fermer">×</button>
+      </header>
+      <div class="ai__log" data-ai-log role="log" aria-live="polite"></div>
+      <div class="ai__chips" data-ai-chips><button type="button" class="ai__chip">Que fait MARKETEAM?</button><button type="button" class="ai__chip">J’ai un restaurant</button><button type="button" class="ai__chip">Comment ça fonctionne?</button></div>
+      <form class="ai__form" data-ai-form>
+        <label class="sr-only" for="ai-input">Écrivez votre question…</label>
+        <textarea id="ai-input" rows="1" maxlength="800" placeholder="Écrivez votre question…" required></textarea>
+        <button class="ai__send" type="submit" aria-label="Envoyer">→</button>
+      </form>
+      <p class="ai__notice">Assistant IA : il peut se tromper. Ne partagez pas de renseignements personnels. <a href="/fr/confidentialite/">Confidentialité</a></p>
+    </div>
+  </dialog>
 
   <nav class="dock" aria-label="Navigation principale">
     <button class="dock__menu" type="button" aria-haspopup="dialog" aria-controls="sheet">
@@ -131,7 +152,7 @@
     </div>
   </dialog>
 
-  <script type="application/json" id="site-config">{"lang":"fr","ui":{"name":"Écrivez votre nom.","contactEmpty":"Indiquez un courriel ou un téléphone pour que nous puissions vous répondre.","contactBad":"Entrez un courriel valide (nom@courriel.com) ou un téléphone d’au moins 8 chiffres.","type":"Sélectionnez votre secteur d’activité.","message":"Dites-nous-en un peu plus (au moins 10 caractères).","consent":"Cochez la case pour que nous puissions traiter votre demande.","alertOne":"Vérifiez le champ indiqué avant d’envoyer.","alertMany":"Vérifiez les {n} champs indiqués avant d’envoyer.","noEndpoint":"Pour l’instant, nous ne pouvons pas recevoir de demandes depuis ce formulaire; votre message n’a donc pas été envoyé.","noEndpointDirect":" Vous pouvez nous écrire par les moyens de contact de cette section.","sendError":"Nous n’avons pas pu envoyer votre demande. Vérifiez votre connexion et réessayez; vos données sont toujours dans le formulaire.","sending":"Envoi…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28"}</script>
+  <script type="application/json" id="site-config">{"lang":"fr","ui":{"name":"Écrivez votre nom.","contactEmpty":"Indiquez un courriel ou un téléphone pour que nous puissions vous répondre.","contactBad":"Entrez un courriel valide (nom@courriel.com) ou un téléphone d’au moins 8 chiffres.","type":"Sélectionnez votre secteur d’activité.","message":"Dites-nous-en un peu plus (au moins 10 caractères).","consent":"Cochez la case pour que nous puissions traiter votre demande.","alertOne":"Vérifiez le champ indiqué avant d’envoyer.","alertMany":"Vérifiez les {n} champs indiqués avant d’envoyer.","noEndpoint":"Pour l’instant, nous ne pouvons pas recevoir de demandes depuis ce formulaire; votre message n’a donc pas été envoyé.","noEndpointDirect":" Vous pouvez nous écrire par les moyens de contact de cette section.","sendError":"Nous n’avons pas pu envoyer votre demande. Vérifiez votre connexion et réessayez; vos données sont toujours dans le formulaire.","sending":"Envoi…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28","ai":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/assistant","intro":"Bonjour! Je peux vous expliquer ce que fait MARKETEAM et vous aider à trouver la bonne solution pour votre entreprise. Par où commence-t-on?","cta":"Parler à l’équipe","thinking":"L’assistant écrit…","error":"L’assistant n’est pas disponible pour le moment. Vous pouvez nous écrire par le formulaire de contact.","limit":"Vous avez atteint la limite de messages pour aujourd’hui. L’équipe peut vous répondre par le formulaire de contact.","contact":"/fr/contact/"}}</script>
   <script src="/js/main.js" defer></script>
 </body>
 </html>

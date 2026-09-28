@@ -85,9 +85,10 @@
         <article class="legal__block"><h2>05. Who has access</h2><div class="legal__text"><p>Only authorized members of the MARKETEAM team, through password-protected access. Our hosting providers do not use your information for their own purposes.</p></div></article>
         <article class="legal__block"><h2>06. How long we keep it</h2><div class="legal__text"><p>As long as needed to handle your request and, where applicable, manage our business relationship. Requests that don’t move forward are <strong>deleted after 24 months</strong>.</p></div></article>
         <article class="legal__block"><h2>07. Cookies</h2><div class="legal__text"><p>This site uses a single functional cookie that remembers the language you choose. <strong>No advertising cookies</strong> or audience measurement tools are used. If that changes, we will ask for your consent first.</p></div></article>
-        <article class="legal__block"><h2>08. Your rights</h2><div class="legal__text"><p>You can ask to access, correct or delete your information, and withdraw your consent. We reply within 30 days.</p><p>You can also file a complaint with the <strong>Commission d’accès à l’information du Québec</strong>.</p></div></article>
-        <article class="legal__block"><h2>09. Security</h2><div class="legal__text"><p>Communication with the site is encrypted (HTTPS) and access to the requests we receive is limited and protected. No system is perfect: in the event of a confidentiality incident, we will act in accordance with the law.</p></div></article>
-        <article class="legal__block"><h2>10. Changes</h2><div class="legal__text"><p>We may update this policy. The date of the last update appears at the top of this page.</p></div></article>
+        <article class="legal__block"><h2>08. AI assistant</h2><div class="legal__text"><p>The site offers an artificial intelligence assistant that answers questions about MARKETEAM. Your messages are sent to <strong>OpenAI</strong> (United States) only to generate the reply, with the request that they not be stored to train its models.</p><p>MARKETEAM <strong>does not keep your conversations</strong>: we only keep an anonymous daily message count to prevent abuse. Don’t include personal information. Answers are generated automatically and may contain errors.</p></div></article>
+        <article class="legal__block"><h2>09. Your rights</h2><div class="legal__text"><p>You can ask to access, correct or delete your information, and withdraw your consent. We reply within 30 days.</p><p>You can also file a complaint with the <strong>Commission d’accès à l’information du Québec</strong>.</p></div></article>
+        <article class="legal__block"><h2>10. Security</h2><div class="legal__text"><p>Communication with the site is encrypted (HTTPS) and access to the requests we receive is limited and protected. No system is perfect: in the event of a confidentiality incident, we will act in accordance with the law.</p></div></article>
+        <article class="legal__block"><h2>11. Changes</h2><div class="legal__text"><p>We may update this policy. The date of the last update appears at the top of this page.</p></div></article>
       </div>
     </section>
   </main>
@@ -104,6 +105,26 @@
       <p class="concept-note">The images on this site are conceptual brand visualizations; they do not depict real clients or work.</p>
     </div>
   </footer>
+
+  <button class="ai-launch" type="button" aria-haspopup="dialog" aria-controls="ai" data-ai-open>
+    <span class="ai-launch__dot" aria-hidden="true"></span><span class="ai-launch__text">Got a question?</span>
+  </button>
+  <dialog class="ai" id="ai" aria-labelledby="ai-title">
+    <div class="ai__panel">
+      <header class="ai__head">
+        <p class="ai__title" id="ai-title">MARKETEAM assistant <span class="ai__badge">AI</span></p>
+        <button class="ai__close" type="button" data-ai-close aria-label="Close">×</button>
+      </header>
+      <div class="ai__log" data-ai-log role="log" aria-live="polite"></div>
+      <div class="ai__chips" data-ai-chips><button type="button" class="ai__chip">What does MARKETEAM do?</button><button type="button" class="ai__chip">I own a restaurant</button><button type="button" class="ai__chip">How do you work?</button></div>
+      <form class="ai__form" data-ai-form>
+        <label class="sr-only" for="ai-input">Type your question…</label>
+        <textarea id="ai-input" rows="1" maxlength="800" placeholder="Type your question…" required></textarea>
+        <button class="ai__send" type="submit" aria-label="Send">→</button>
+      </form>
+      <p class="ai__notice">AI assistant: it can make mistakes. Don’t share personal information. <a href="/en/confidentialite/">Privacy</a></p>
+    </div>
+  </dialog>
 
   <nav class="dock" aria-label="Main navigation">
     <button class="dock__menu" type="button" aria-haspopup="dialog" aria-controls="sheet">
@@ -131,7 +152,7 @@
     </div>
   </dialog>
 
-  <script type="application/json" id="site-config">{"lang":"en","ui":{"name":"Please enter your name.","contactEmpty":"Enter an email or a phone number so we can reply.","contactBad":"Enter a valid email (name@email.com) or a phone number with at least 8 digits.","type":"Select your industry.","message":"Tell us a bit more (at least 10 characters).","consent":"Check the box so we can process your request.","alertOne":"Please check the highlighted field before sending.","alertMany":"Please check the {n} highlighted fields before sending.","noEndpoint":"We can’t receive requests from this form yet, so your message was not sent.","noEndpointDirect":" You can reach us through the contact options in this section.","sendError":"We couldn’t send your request. Check your connection and try again; your details are still in the form.","sending":"Sending…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28"}</script>
+  <script type="application/json" id="site-config">{"lang":"en","ui":{"name":"Please enter your name.","contactEmpty":"Enter an email or a phone number so we can reply.","contactBad":"Enter a valid email (name@email.com) or a phone number with at least 8 digits.","type":"Select your industry.","message":"Tell us a bit more (at least 10 characters).","consent":"Check the box so we can process your request.","alertOne":"Please check the highlighted field before sending.","alertMany":"Please check the {n} highlighted fields before sending.","noEndpoint":"We can’t receive requests from this form yet, so your message was not sent.","noEndpointDirect":" You can reach us through the contact options in this section.","sendError":"We couldn’t send your request. Check your connection and try again; your details are still in the form.","sending":"Sending…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28","ai":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/assistant","intro":"Hi! I can explain what MARKETEAM does and help you find the right solution for your business. Where should we start?","cta":"Talk to the team","thinking":"The assistant is typing…","error":"The assistant isn’t available right now. You can reach us through the contact form.","limit":"You’ve reached today’s message limit. The team can reply through the contact form.","contact":"/en/contact/"}}</script>
   <script src="/js/main.js" defer></script>
 </body>
 </html>

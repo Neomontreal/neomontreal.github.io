@@ -143,6 +143,26 @@
     </div>
   </footer>
 
+  <button class="ai-launch" type="button" aria-haspopup="dialog" aria-controls="ai" data-ai-open>
+    <span class="ai-launch__dot" aria-hidden="true"></span><span class="ai-launch__text">Une question?</span>
+  </button>
+  <dialog class="ai" id="ai" aria-labelledby="ai-title">
+    <div class="ai__panel">
+      <header class="ai__head">
+        <p class="ai__title" id="ai-title">Assistant MARKETEAM <span class="ai__badge">IA</span></p>
+        <button class="ai__close" type="button" data-ai-close aria-label="Fermer">×</button>
+      </header>
+      <div class="ai__log" data-ai-log role="log" aria-live="polite"></div>
+      <div class="ai__chips" data-ai-chips><button type="button" class="ai__chip">Que fait MARKETEAM?</button><button type="button" class="ai__chip">J’ai un restaurant</button><button type="button" class="ai__chip">Comment ça fonctionne?</button></div>
+      <form class="ai__form" data-ai-form>
+        <label class="sr-only" for="ai-input">Écrivez votre question…</label>
+        <textarea id="ai-input" rows="1" maxlength="800" placeholder="Écrivez votre question…" required></textarea>
+        <button class="ai__send" type="submit" aria-label="Envoyer">→</button>
+      </form>
+      <p class="ai__notice">Assistant IA : il peut se tromper. Ne partagez pas de renseignements personnels. <a href="/fr/confidentialite/">Confidentialité</a></p>
+    </div>
+  </dialog>
+
   <nav class="dock" aria-label="Navigation principale">
     <button class="dock__menu" type="button" aria-haspopup="dialog" aria-controls="sheet">
       <span class="dock__bars" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -169,7 +189,7 @@
     </div>
   </dialog>
 
-  <script type="application/json" id="site-config">{"lang":"fr","ui":{"name":"Écrivez votre nom.","contactEmpty":"Indiquez un courriel ou un téléphone pour que nous puissions vous répondre.","contactBad":"Entrez un courriel valide (nom@courriel.com) ou un téléphone d’au moins 8 chiffres.","type":"Sélectionnez votre secteur d’activité.","message":"Dites-nous-en un peu plus (au moins 10 caractères).","consent":"Cochez la case pour que nous puissions traiter votre demande.","alertOne":"Vérifiez le champ indiqué avant d’envoyer.","alertMany":"Vérifiez les {n} champs indiqués avant d’envoyer.","noEndpoint":"Pour l’instant, nous ne pouvons pas recevoir de demandes depuis ce formulaire; votre message n’a donc pas été envoyé.","noEndpointDirect":" Vous pouvez nous écrire par les moyens de contact de cette section.","sendError":"Nous n’avons pas pu envoyer votre demande. Vérifiez votre connexion et réessayez; vos données sont toujours dans le formulaire.","sending":"Envoi…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28"}</script>
+  <script type="application/json" id="site-config">{"lang":"fr","ui":{"name":"Écrivez votre nom.","contactEmpty":"Indiquez un courriel ou un téléphone pour que nous puissions vous répondre.","contactBad":"Entrez un courriel valide (nom@courriel.com) ou un téléphone d’au moins 8 chiffres.","type":"Sélectionnez votre secteur d’activité.","message":"Dites-nous-en un peu plus (au moins 10 caractères).","consent":"Cochez la case pour que nous puissions traiter votre demande.","alertOne":"Vérifiez le champ indiqué avant d’envoyer.","alertMany":"Vérifiez les {n} champs indiqués avant d’envoyer.","noEndpoint":"Pour l’instant, nous ne pouvons pas recevoir de demandes depuis ce formulaire; votre message n’a donc pas été envoyé.","noEndpointDirect":" Vous pouvez nous écrire par les moyens de contact de cette section.","sendError":"Nous n’avons pas pu envoyer votre demande. Vérifiez votre connexion et réessayez; vos données sont toujours dans le formulaire.","sending":"Envoi…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28","ai":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/assistant","intro":"Bonjour! Je peux vous expliquer ce que fait MARKETEAM et vous aider à trouver la bonne solution pour votre entreprise. Par où commence-t-on?","cta":"Parler à l’équipe","thinking":"L’assistant écrit…","error":"L’assistant n’est pas disponible pour le moment. Vous pouvez nous écrire par le formulaire de contact.","limit":"Vous avez atteint la limite de messages pour aujourd’hui. L’équipe peut vous répondre par le formulaire de contact.","contact":"/fr/contact/"}}</script>
   <script src="/js/main.js" defer></script>
 </body>
 </html>

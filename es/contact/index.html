@@ -132,6 +132,26 @@
     </div>
   </footer>
 
+  <button class="ai-launch" type="button" aria-haspopup="dialog" aria-controls="ai" data-ai-open>
+    <span class="ai-launch__dot" aria-hidden="true"></span><span class="ai-launch__text">¿Una pregunta?</span>
+  </button>
+  <dialog class="ai" id="ai" aria-labelledby="ai-title">
+    <div class="ai__panel">
+      <header class="ai__head">
+        <p class="ai__title" id="ai-title">Asistente MARKETEAM <span class="ai__badge">IA</span></p>
+        <button class="ai__close" type="button" data-ai-close aria-label="Cerrar">×</button>
+      </header>
+      <div class="ai__log" data-ai-log role="log" aria-live="polite"></div>
+      <div class="ai__chips" data-ai-chips><button type="button" class="ai__chip">¿Qué hace MARKETEAM?</button><button type="button" class="ai__chip">Tengo un restaurante</button><button type="button" class="ai__chip">¿Cómo trabajan?</button></div>
+      <form class="ai__form" data-ai-form>
+        <label class="sr-only" for="ai-input">Escribe tu pregunta…</label>
+        <textarea id="ai-input" rows="1" maxlength="800" placeholder="Escribe tu pregunta…" required></textarea>
+        <button class="ai__send" type="submit" aria-label="Enviar">→</button>
+      </form>
+      <p class="ai__notice">Asistente de IA: puede equivocarse. No compartas datos personales. <a href="/es/confidentialite/">Privacidad</a></p>
+    </div>
+  </dialog>
+
   <nav class="dock" aria-label="Navegación principal">
     <button class="dock__menu" type="button" aria-haspopup="dialog" aria-controls="sheet">
       <span class="dock__bars" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -158,7 +178,7 @@
     </div>
   </dialog>
 
-  <script type="application/json" id="site-config">{"lang":"es","ui":{"name":"Escribe tu nombre.","contactEmpty":"Indica un correo o un teléfono para poder responderte.","contactBad":"Escribe un correo válido (nombre@correo.com) o un teléfono de al menos 8 dígitos.","type":"Selecciona tu sector.","message":"Cuéntanos un poco más (al menos 10 caracteres).","consent":"Marca la casilla para que podamos atender tu solicitud.","alertOne":"Revisa el campo marcado antes de enviar.","alertMany":"Revisa los {n} campos marcados antes de enviar.","noEndpoint":"Por ahora no podemos recibir solicitudes desde este formulario, así que tu mensaje no se envió.","noEndpointDirect":" Puedes escribirnos por los medios de contacto de esta sección.","sendError":"No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo; tus datos siguen en el formulario.","sending":"Enviando…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28"}</script>
+  <script type="application/json" id="site-config">{"lang":"es","ui":{"name":"Escribe tu nombre.","contactEmpty":"Indica un correo o un teléfono para poder responderte.","contactBad":"Escribe un correo válido (nombre@correo.com) o un teléfono de al menos 8 dígitos.","type":"Selecciona tu sector.","message":"Cuéntanos un poco más (al menos 10 caracteres).","consent":"Marca la casilla para que podamos atender tu solicitud.","alertOne":"Revisa el campo marcado antes de enviar.","alertMany":"Revisa los {n} campos marcados antes de enviar.","noEndpoint":"Por ahora no podemos recibir solicitudes desde este formulario, así que tu mensaje no se envió.","noEndpointDirect":" Puedes escribirnos por los medios de contacto de esta sección.","sendError":"No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo; tus datos siguen en el formulario.","sending":"Enviando…"},"form":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/lead"},"hasDirect":false,"policy":"2026-09-28","ai":{"endpoint":"https://zhwhytnhaugxijomtdak.supabase.co/functions/v1/assistant","intro":"¡Hola! Puedo explicarte qué hace MARKETEAM y ayudarte a encontrar la solución correcta para tu empresa. ¿Por dónde empezamos?","cta":"Hablar con el equipo","thinking":"El asistente está escribiendo…","error":"El asistente no está disponible por ahora. Puedes escribirnos con el formulario de contacto.","limit":"Llegaste al límite de mensajes de hoy. El equipo puede responderte por el formulario de contacto.","contact":"/es/contact/"}}</script>
   <script src="/js/main.js" defer></script>
 </body>
 </html>

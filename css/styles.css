@@ -686,3 +686,45 @@ html[lang="fr"] .page-hero h1 { font-size: clamp(2.7rem, 11.5vw, 6.4rem); }
 .legal { z-index: 3; }
 .footer__legal a { color: inherit; }
 .legal { border-radius: var(--r) var(--r) 0 0; margin-top: calc(-1 * var(--r)); padding-top: calc(var(--section-y) + var(--r)); position: relative; }
+
+/* ---------- Asistente IA (burbuja + panel) ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.ai-launch { position: fixed; z-index: 56; right: 16px; bottom: calc(var(--dock-h) + 14px + var(--safe-b)); display: inline-flex; align-items: center; gap: 10px;
+  height: 48px; padding: 0 18px 0 14px; border: 1px solid var(--line-dark); border-radius: 999px; background: var(--bone); color: var(--carbon);
+  font: 600 .9375rem/1 var(--sans); box-shadow: 0 10px 30px rgba(0,0,0,.28); cursor: pointer; transition: transform .25s var(--ease); }
+.ai-launch:hover { transform: translateY(-2px); }
+.ai-launch__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--steel); box-shadow: 0 0 0 4px color-mix(in srgb, var(--steel) 30%, transparent); }
+@media (prefers-reduced-motion: no-preference) { .ai-launch__dot { animation: ai-pulse 2.4s ease-in-out infinite; } }
+@keyframes ai-pulse { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--steel) 0%, transparent); } }
+html.no-scroll .ai-launch { visibility: hidden; }
+
+.ai { padding: 0; border: 0; background: transparent; max-width: none; max-height: none; width: 100%; height: 100%; margin: 0; }
+.ai::backdrop { background: rgba(10, 14, 12, .45); }
+.ai__panel { position: absolute; inset: auto 0 0 0; height: min(86svh, 720px); display: grid; grid-template-rows: auto 1fr auto auto auto;
+  background: var(--bone); color: var(--carbon); border-radius: var(--r) var(--r) 0 0; padding-bottom: var(--safe-b); box-shadow: 0 -20px 60px rgba(0,0,0,.3); }
+.ai__head { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; background: var(--carbon); color: var(--bone); border-radius: var(--r) var(--r) 0 0; }
+.ai__title { font-family: var(--serif); font-size: 1.5rem; }
+.ai__badge { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: var(--steel); color: var(--carbon); font: 700 .7rem/1.4 var(--sans); vertical-align: middle; }
+.ai__close { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-dark); background: transparent; color: var(--bone); font-size: 1.5rem; cursor: pointer; }
+.ai__log { overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 10px; overscroll-behavior: contain; }
+.ai__msg { max-width: 86%; padding: 12px 15px; border-radius: 18px; line-height: 1.5; font-size: .9875rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ai__msg--bot { align-self: flex-start; background: #fffaf2; border: 1px solid var(--line-light); border-bottom-left-radius: 6px; }
+.ai__msg--me { align-self: flex-end; background: var(--carbon); color: var(--bone); border-bottom-right-radius: 6px; }
+.ai__msg--wait { color: var(--ink-soft); font-style: italic; }
+.ai__cta { align-self: flex-start; margin-top: -2px; }
+.ai__chips { display: flex; gap: 8px; overflow-x: auto; padding: 0 18px 10px; scrollbar-width: none; }
+.ai__chips:empty { display: none; }
+.ai__chip { flex: none; min-height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-light); background: transparent; color: var(--carbon); font: 600 .875rem var(--sans); cursor: pointer; }
+.ai__chip:hover { background: var(--sand); }
+.ai__form { display: flex; gap: 8px; align-items: flex-end; padding: 10px 14px; border-top: 1px solid var(--line-light); }
+.ai__form textarea { flex: 1; min-height: 46px; max-height: 140px; resize: none; padding: 12px 14px; border-radius: 16px; border: 1px solid var(--line-light); background: #fffdf8; color: var(--carbon); font: 1rem/1.4 var(--sans); }
+.ai__send { flex: none; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--carbon); color: var(--bone); font-size: 1.25rem; cursor: pointer; }
+.ai__send:disabled { opacity: .5; }
+.ai__notice { padding: 0 18px 12px; font-size: .75rem; color: var(--ink-soft); }
+.ai__notice a { color: inherit; }
+@media (min-width: 900px) {
+  .ai-launch { right: 28px; bottom: 28px; }
+  .ai::backdrop { background: transparent; }
+  .ai__panel { inset: auto 28px 28px auto; width: 400px; height: min(640px, calc(100svh - 120px)); border-radius: var(--r); padding-bottom: 0; }
+}
+.ai { --btn-bg: var(--carbon); --btn-fg: var(--bone); --btn-hover: var(--navy); }
