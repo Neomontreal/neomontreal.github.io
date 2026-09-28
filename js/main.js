@@ -86,25 +86,45 @@
     });
   }
 
-  /* ---------- Quiénes somos: el símbolo MT se arma al bajar ----------
-     Cada pieza llega en su tramo del scroll (--a1..--a3, 0→1) y --a4 dibuja la línea neón final.
-     data-step (1..4) muestra el texto de la pieza que está llegando. */
-  const asm = $('[data-assemble]');
-  const easeOut = t => 1 - Math.pow(1 - t, 3);
-  function updateAssemble() {
-    if (!asm) return;
-    const r = asm.getBoundingClientRect(), total = r.height - innerHeight;
-    if (r.bottom < 0 || r.top > innerHeight || total <= 0) return;
-    const p = clamp(-r.top / total);
-    const seg = (a, b) => easeOut(clamp((p - a) / (b - a)));
-    asm.style.setProperty('--a1', seg(0.02, 0.26).toFixed(3));
-    asm.style.setProperty('--a2', seg(0.30, 0.54).toFixed(3));
-    asm.style.setProperty('--a3', seg(0.58, 0.82).toFixed(3));
-    asm.style.setProperty('--a4', seg(0.86, 0.96).toFixed(3));
-    const step = p < 0.28 ? 1 : p < 0.56 ? 2 : p < 0.84 ? 3 : 4;
-    if (asm.dataset.step !== String(step)) asm.dataset.step = step;
+  /* ---------- Portada: chip MARKETEAM en 3D ----------
+     Gira solo sobre su eje; al bajar, el scroll lo hace girar 3 vueltas y cambia el texto (data-step 0..4).
+     Al final queda de frente y crece. En escritorio se inclina hacia el cursor. Solo transform/opacity. */
+  const intro = $('[data-intro]'), chip = $('[data-chip]');
+  if (intro && chip && !reduce) {
+    let p = 0, visible = true, mx = 0, my = 0, tx = 0, ty = 0, t0 = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const measure = () => {
+      const r = intro.getBoundingClientRect(), total = r.height - innerHeight;
+      p = total > 0 ? clamp(-r.top / total) : 0;
+      const step = p < 0.1 ? 0 : p < 0.36 ? 1 : p < 0.6 ? 2 : p < 0.82 ? 3 : 4;
+      if (intro.dataset.step !== String(step)) intro.dataset.step = step;
+      intro.style.setProperty('--out', clamp(p / 0.1).toFixed(3));
+      intro.style.setProperty('--fin', ease(clamp((p - 0.84) / 0.1)).toFixed(3));
+    };
+    const loop = now => {
+      if (!visible) return;
+      mx += (tx - mx) * 0.06; my += (ty - my) * 0.06;
+      const auto = ((now - t0) / 1000) * 24 * (1 - clamp(p / 0.08));       // 24°/s solo mientras está arriba
+      const fin = ease(clamp((p - 0.82) / 0.12));
+      const scroll = ease(clamp(p / 0.82)) * 1080;                          // 3 vueltas completas → queda de frente
+      const ry = (-24 + auto) * (1 - fin) + scroll + mx * 18;
+      const rx = 12 * (1 - fin) + 4 * Math.sin(now / 1400) * (1 - fin) - my * 12;
+      chip.style.setProperty('--ry', ry.toFixed(2));
+      chip.style.setProperty('--rx', rx.toFixed(2));
+      chip.style.setProperty('--cs', (1 + fin * 0.18).toFixed(3));
+      chip.style.setProperty('--sheen', (((ry % 360) + 360) % 360 / 360 * 160 - 80).toFixed(1));
+      requestAnimationFrame(loop);
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => es.forEach(e => { const was = visible; visible = e.isIntersecting; if (visible && !was) requestAnimationFrame(loop); })).observe(intro);
+    }
+    if (window.matchMedia('(pointer: fine)').matches) {
+      addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+    }
+    addEventListener('scroll', measure, { passive: true });
+    addEventListener('resize', measure);
+    measure(); requestAnimationFrame(loop);
   }
-  if (asm && !reduce) { asm.dataset.step = '1'; ['--a1', '--a2', '--a3', '--a4'].forEach(v => asm.style.setProperty(v, '0')); }
 
   /* ---------- Botones magnéticos (solo con puntero fino) ---------- */
   if (!reduce && window.matchMedia('(pointer: fine)').matches) {
@@ -200,7 +220,7 @@
     if (bar) bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
     header.classList.toggle('is-scrolled', y > 40);
     if (!reduce) {
-      updateCards(); updateExpand(); updateScrub(); updateAssemble();
+      updateCards(); updateExpand(); updateScrub();
       parallax.forEach(mask => {
         const img = mask.firstElementChild, r = mask.getBoundingClientRect();
         const off = (r.top + r.height / 2 - innerHeight / 2) * -0.07;

@@ -65,42 +65,47 @@
 
   <main id="contenido">
 
-    <section class="hero hero--type theme-dark" id="inicio" data-section="Inicio">
-      <svg class="arcs hero__arcs" aria-hidden="true" focusable="false"><use href="#arcs"/></svg>
-      <div class="wrap hero__inner">
-        <div class="hero__copy">
-          <p class="label">Marketing · Tecnología · Negocio</p>
-          <h1><span class="line"><span style="--d:0s">Las buenas ideas</span></span><span class="line"><span style="--d:0.12s"><em class="acc">empiezan contigo.</em></span></span></h1>
-          <p class="lead"><strong>Entendemos tu empresa</strong> y luego construimos <strong>la solución correcta</strong> para hacerla crecer.</p>
-          <div class="actions">
-            <a class="btn btn--primary" href="/es/contact/">Hablemos</a>
-            <a class="btn btn--ghost" href="/es/services/">Nuestros servicios</a>
+    <section class="intro theme-dark" id="inicio" data-intro data-step="0" data-section="Inicio">
+      <div class="intro__stick">
+        <div class="intro__glow" aria-hidden="true"><i></i></div>
+        <figure class="chip-wrap" aria-hidden="true">
+          <div class="chip" data-chip>
+            <div class="chip__body">
+              <i class="chip__layer" style="--z:0"></i><i class="chip__layer" style="--z:1"></i><i class="chip__layer" style="--z:2"></i><i class="chip__layer" style="--z:3"></i><i class="chip__layer" style="--z:4"></i><i class="chip__layer" style="--z:5"></i><i class="chip__layer" style="--z:6"></i><i class="chip__layer" style="--z:7"></i><i class="chip__layer" style="--z:8"></i><i class="chip__layer" style="--z:9"></i><i class="chip__layer" style="--z:10"></i><i class="chip__layer" style="--z:11"></i>
+              <div class="chip__face chip__face--back">
+                <span class="chip__pins"></span><span class="chip__core">
+                <svg class="chip__logo" viewBox="0 0 342 199" focusable="false"><defs><linearGradient id="mtg-b" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#F3EBDD"/><stop offset=".55" stop-color="#E7DED2"/><stop offset="1" stop-color="#B6FF00"/></linearGradient></defs>
+                  <g fill="url(#mtg-b)"><polygon points="0,63 27,65 114,122 116,177 49,133 42,131 40,176 33,179 0,177"/><polygon points="0,3 338,0 342,4 341,33 328,42 205,42 201,48 201,192 195,199 144,199 139,194 139,48 133,42 13,42 0,31"/><polygon points="222,125 317,63 341,63 339,179 300,177 298,131 292,133 223,177"/></g></svg>
+                <span class="chip__name">MARKETEAM</span></span></div>
+              <div class="chip__face chip__face--front">
+                <span class="chip__pins"></span><span class="chip__core">
+                <svg class="chip__logo" viewBox="0 0 342 199" focusable="false"><defs><linearGradient id="mtg-f" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#F3EBDD"/><stop offset=".55" stop-color="#E7DED2"/><stop offset="1" stop-color="#B6FF00"/></linearGradient></defs>
+                  <g fill="url(#mtg-f)"><polygon points="0,63 27,65 114,122 116,177 49,133 42,131 40,176 33,179 0,177"/><polygon points="0,3 338,0 342,4 341,33 328,42 205,42 201,48 201,192 195,199 144,199 139,194 139,48 133,42 13,42 0,31"/><polygon points="222,125 317,63 341,63 339,179 300,177 298,131 292,133 223,177"/></g></svg>
+                <span class="chip__name">MARKETEAM</span></span></div>
+            </div>
           </div>
-        </div>
-        <p class="cue" aria-hidden="true"><span>Desliza</span><i></i></p>
-      </div>
-    </section>
-
-    <section class="assemble theme-dark" data-assemble aria-labelledby="asm-titulo" data-section="Quiénes somos">
-      <div class="assemble__stick">
-        <div class="wrap assemble__grid">
-          <figure class="assemble__obj" aria-hidden="true">
-            <svg viewBox="0 0 342 199" class="mt" focusable="false">
-              <g class="mt__ghost"><polygon points="0,63 27,65 114,122 116,177 49,133 42,131 40,176 33,179 0,177"/><polygon points="0,3 338,0 342,4 341,33 328,42 205,42 201,48 201,192 195,199 144,199 139,194 139,48 133,42 13,42 0,31"/><polygon points="222,125 317,63 341,63 339,179 300,177 298,131 292,133 223,177"/></g>
-              <polygon class="piece piece--1" points="0,63 27,65 114,122 116,177 49,133 42,131 40,176 33,179 0,177"/><polygon class="piece piece--2" points="0,3 338,0 342,4 341,33 328,42 205,42 201,48 201,192 195,199 144,199 139,194 139,48 133,42 13,42 0,31"/><polygon class="piece piece--3" points="222,125 317,63 341,63 339,179 300,177 298,131 292,133 223,177"/>
-            </svg>
-            <span class="assemble__line"></span>
-          </figure>
-          <div class="assemble__copy">
-            <p class="label" id="asm-titulo">Quiénes somos</p>
-            <ol class="assemble__steps">
-              <li data-i="1"><p class="assemble__num">01 / 03</p><h2>Marketing</h2><p>Para que los clientes correctos te vean y te elijan.</p></li>
-              <li data-i="2"><p class="assemble__num">02 / 03</p><h2>Tecnología</h2><p>Para que tu empresa funcione de forma más simple.</p></li>
-              <li data-i="3"><p class="assemble__num">03 / 03</p><h2>Soluciones de negocio</h2><p>Para crecer, más allá del marketing.</p></li>
-              <li data-i="4" class="assemble__final"><h2>Tres fuerzas, <em class="acc">un equipo.</em></h2></li>
-            </ol>
+          <span class="chip__shadow"></span>
+        </figure>
+        <div class="wrap intro__copy">
+          <div class="intro__hero">
+            <p class="label">Marketing · Tecnología · Negocio</p>
+            <h1><span class="line"><span style="--d:0s">Las buenas ideas</span></span><span class="line"><span style="--d:0.12s"><em class="acc">empiezan contigo.</em></span></span></h1>
+            <p class="lead"><strong>Entendemos tu empresa</strong> y luego construimos <strong>la solución correcta</strong> para hacerla crecer.</p>
+            <div class="actions">
+              <a class="btn btn--primary" href="/es/contact/">Hablemos</a>
+              <a class="btn btn--ghost" href="/es/services/">Nuestros servicios</a>
+            </div>
           </div>
+          <ol class="intro__steps" aria-label="Quiénes somos">
+            <li data-i="1"><p class="intro__num">01 / 03</p><h2>Marketing</h2><p>Para que los clientes correctos te vean y te elijan.</p></li>
+            <li data-i="2"><p class="intro__num">02 / 03</p><h2>Tecnología</h2><p>Para que tu empresa funcione de forma más simple.</p></li>
+            <li data-i="3"><p class="intro__num">03 / 03</p><h2>Soluciones de negocio</h2><p>Para crecer, más allá del marketing.</p></li>
+            <li data-i="4" class="intro__final"><h2>Tres fuerzas, <em class="acc">un equipo.</em></h2><span class="intro__line"></span></li>
+          </ol>
         </div>
+        <p class="cue intro__cue" aria-hidden="true"><span>Desliza</span><i></i></p>
       </div>
     </section>
 
