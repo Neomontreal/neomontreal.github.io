@@ -561,52 +561,29 @@ html[lang="fr"] h1 .acc { white-space: nowrap; }
 .btn--xl { min-height: 64px; padding: 0 2rem; font-size: 1.0625rem; gap: .6em; }
 
 /* =====================================================================
-   Portada: chip MARKETEAM en 3D (referencia: chip M4 de apple.com/ipad-air)
-   Gira sobre su eje; al bajar, el scroll lo hace girar y cambia el texto:
-   portada → Marketing → Technologie → Solutions d’affaires → final.
-   Solo se anima transform/opacity. Sin librerías: 3D con CSS.
+   Portada 3D: un objeto por texto (bombilla, lente, chip, barras, símbolo MT) — ver src/intro3d.js.
+   Al bajar, el objeto gira y se transforma en el siguiente; los textos cambian con data-step.
    ===================================================================== */
 .intro { position: relative; background: radial-gradient(120% 80% at 50% 30%, #2b4a3d 0%, var(--carbon) 55%, #182a22 100%); }
 .intro__stick { position: relative; min-height: 100svh; display: grid; grid-template-rows: auto 1fr; align-items: center; overflow: hidden;
   padding: calc(var(--header-h) + 12px) 0 calc(var(--dock-h) + 24px); }
 
-/* Halo que gira detrás del chip (colores de marca, con toque neón) */
+/* Halo que gira detrás del objeto (colores de marca, con toque neón) */
 .intro__glow { position: absolute; left: 50%; top: 30%; width: min(120vw, 760px); aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; opacity: .55; }
 .intro__glow i { position: absolute; inset: 18%; border-radius: 50%; filter: blur(48px);
   background: conic-gradient(from 0deg, #B6FF00, #3f7a5e, #F3EBDD, #243C32, #B6FF00); }
 @media (prefers-reduced-motion: no-preference) { .intro__glow i { animation: spin 14s linear infinite; } }
 .intro[data-step="1"] .intro__glow { opacity: .7; } .intro[data-step="4"] .intro__glow { opacity: .9; }
 
-/* Chip */
-.chip-wrap { position: relative; margin: 28px 0 8px; justify-self: center; perspective: 1100px; width: var(--chip); --chip: min(50vw, 270px); }
-.chip { width: var(--chip); aspect-ratio: 1; transform-style: preserve-3d;
-  transform: rotateX(calc(var(--rx, 12) * 1deg)) rotateY(calc(var(--ry, -24) * 1deg)) scale(var(--cs, 1)); will-change: transform; }
-.chip__body { position: absolute; inset: 0; transform-style: preserve-3d; }
-/* Grosor: capas apiladas en Z con bisel metálico */
-.chip__layer { position: absolute; inset: 0; border-radius: 16%; transform: translateZ(calc((var(--z) - 5.5) * 1.6px));
-  background: linear-gradient(135deg, #cfd3cc 0%, #6f7870 35%, #2b302c 60%, #9aa39a 100%); }
-.chip__face { position: absolute; inset: 0; border-radius: 16%; overflow: hidden; backface-visibility: hidden;
-  background: radial-gradient(120% 120% at 30% 20%, #3a4540 0%, #1b1f1c 55%, #0f1210 100%);
-  box-shadow: inset 0 0 0 2px rgba(243,235,221,.18), inset 0 0 0 7px rgba(0,0,0,.35), inset 0 0 0 8px rgba(182,255,0,.18); }
-.chip__face--front { transform: translateZ(9.6px); }
-.chip__face--back { transform: rotateY(180deg) translateZ(9.6px); }
-/* "Pines" en el contorno, como un chip */
-.chip__pins { position: absolute; inset: 5%; border-radius: 12%;
-  background:
-    repeating-linear-gradient(90deg, rgba(243,235,221,.22) 0 2px, transparent 2px 9px) top / 100% 5px no-repeat,
-    repeating-linear-gradient(90deg, rgba(243,235,221,.22) 0 2px, transparent 2px 9px) bottom / 100% 5px no-repeat,
-    repeating-linear-gradient(0deg, rgba(243,235,221,.22) 0 2px, transparent 2px 9px) left / 5px 100% no-repeat,
-    repeating-linear-gradient(0deg, rgba(243,235,221,.22) 0 2px, transparent 2px 9px) right / 5px 100% no-repeat; opacity: .8; }
-.chip__core { position: absolute; inset: 14%; border-radius: 10%; display: grid; place-content: center; justify-items: center; gap: 10%;
-  background: linear-gradient(145deg, rgba(243,235,221,.07), rgba(0,0,0,.25)); box-shadow: inset 0 1px 0 rgba(243,235,221,.12), 0 0 40px rgba(182,255,0,.08); }
-.chip__logo { width: 62%; justify-self: center; filter: drop-shadow(0 0 14px rgba(182,255,0,.28)); }
-.chip__name { font: 600 clamp(.5rem, 2.2vw, .72rem)/1 var(--sans); letter-spacing: .34em; color: rgba(243,235,221,.7); padding-left: .34em; }
-/* Reflejo que recorre la cara al girar */
-.chip__face::after { content: ""; position: absolute; inset: -40%; pointer-events: none;
-  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.14) 50%, transparent 60%);
-  transform: translateX(calc(var(--sheen, 0) * 1%)); }
-.chip__shadow { position: absolute; left: 12%; right: 12%; bottom: -18%; height: 14%; border-radius: 50%; background: rgba(0,0,0,.45); filter: blur(18px);
-  transform: scaleX(var(--cs, 1)); }
+/* Escena 3D (Three.js): lienzo transparente; sin WebGL se ve el logo estático */
+.intro__stage { position: relative; margin: 0; height: 33svh; min-height: 210px; }
+.intro .actions { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 10px; margin-top: 20px; }
+.intro .actions .btn { flex: 1 1 0; min-width: 0; padding-inline: 12px; }
+.intro__hero .lead { font-size: clamp(1rem, 3.9vw, 1.2rem); }
+@media (max-width: 899px) { .intro__cue { display: none; } }
+.intro__stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.intro__fallback { position: absolute; left: 50%; top: 50%; width: min(44vw, 240px); transform: translate(-50%, -50%); filter: drop-shadow(0 0 30px rgba(182,255,0,.25)); }
+.intro.is-3d .intro__fallback { display: none; }
 
 /* Textos: portada y pasos comparten el mismo lugar */
 .intro__copy { position: relative; z-index: 1; display: grid; }
@@ -636,11 +613,10 @@ html[lang="fr"] .intro h1 { font-size: clamp(2.4rem, 10vw, 6.4rem); }
   .js .intro:not([data-step="0"]) .intro__cue { visibility: hidden; }
   .js .intro__line { transform: scaleX(var(--fin, 0)); transform-origin: 0 50%; }
 }
-@media (prefers-reduced-motion: reduce) { .chip { --rx: 8; --ry: -18; } }
 
 @media (min-width: 900px) {
   .intro__stick { grid-template-rows: 1fr; grid-template-columns: 1fr; padding-bottom: 40px; }
-  .chip-wrap { --chip: min(34vw, 460px); position: absolute; right: 8vw; top: 50%; translate: 0 -50%; margin: 0; }
+  .intro__stage { position: absolute; right: 0; top: 0; bottom: 0; width: 56%; height: auto; margin: 0; }
   .intro__glow { left: auto; right: -10vw; top: 50%; transform: translate(0, -50%); width: 60vw; }
   .intro__copy { width: min(100% - 2 * var(--gutter), var(--max)); }
   .intro__hero, .intro__steps { max-width: 44%; }
