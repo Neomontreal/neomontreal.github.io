@@ -1,0 +1,38 @@
+{
+  "mt-caja-libreta": {
+    "base": "assets/img/mt-caja-libreta",
+    "widths": [
+      640
+    ],
+    "w": 640,
+    "h": 426,
+    "alt": ""
+  },
+  "mt-letrero": {
+    "base": "assets/img/mt-letrero",
+    "widths": [
+      640
+    ],
+    "w": 640,
+    "h": 426,
+    "alt": ""
+  },
+  "mt-sudadera": {
+    "base": "assets/img/mt-sudadera",
+    "widths": [
+      640
+    ],
+    "w": 640,
+    "h": 426,
+    "alt": ""
+  },
+  "mt-tarjetas": {
+    "base": "assets/img/mt-tarjetas",
+    "widths": [
+      640
+    ],
+    "w": 640,
+    "h": 426,
+    "alt": ""
+  }
+}
