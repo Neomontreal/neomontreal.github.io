@@ -1,38 +1,106 @@
 {
-  "mt-caja-libreta": {
-    "base": "assets/img/mt-caja-libreta",
+  "work-catrina": {
+    "base": "assets/img/work-catrina",
     "widths": [
-      640
+      560,
+      840,
+      1122
     ],
-    "w": 640,
-    "h": 426,
+    "w": 1122,
+    "h": 1682,
     "alt": ""
   },
-  "mt-letrero": {
-    "base": "assets/img/mt-letrero",
+  "work-margaritas": {
+    "base": "assets/img/work-margaritas",
     "widths": [
-      640
+      560,
+      840
     ],
-    "w": 640,
-    "h": 426,
+    "w": 840,
+    "h": 1259,
     "alt": ""
   },
-  "mt-sudadera": {
-    "base": "assets/img/mt-sudadera",
+  "work-neon": {
+    "base": "assets/img/work-neon",
     "widths": [
-      640
+      560,
+      840
     ],
-    "w": 640,
-    "h": 426,
+    "w": 840,
+    "h": 1119,
     "alt": ""
   },
-  "mt-tarjetas": {
-    "base": "assets/img/mt-tarjetas",
+  "work-table": {
+    "base": "assets/img/work-table",
     "widths": [
-      640
+      560,
+      840
     ],
-    "w": 640,
-    "h": 426,
+    "w": 840,
+    "h": 1260,
+    "alt": ""
+  },
+  "work-tacos-victor": {
+    "base": "assets/img/work-tacos-victor",
+    "widths": [
+      560,
+      840
+    ],
+    "w": 840,
+    "h": 1259,
+    "alt": ""
+  },
+  "work-tacos": {
+    "base": "assets/img/work-tacos",
+    "widths": [
+      560,
+      840
+    ],
+    "w": 840,
+    "h": 1260,
+    "alt": ""
+  },
+  "work-tequila": {
+    "base": "assets/img/work-tequila",
+    "widths": [
+      560,
+      840,
+      1122
+    ],
+    "w": 1122,
+    "h": 1682,
+    "alt": ""
+  },
+  "work-tiki": {
+    "base": "assets/img/work-tiki",
+    "widths": [
+      560,
+      840,
+      1122
+    ],
+    "w": 1122,
+    "h": 1402,
+    "alt": ""
+  },
+  "work-toxica-lac": {
+    "base": "assets/img/work-toxica-lac",
+    "widths": [
+      560,
+      840
+    ],
+    "w": 840,
+    "h": 1260,
+    "alt": ""
+  },
+  "work-toxica": {
+    "base": "assets/img/work-toxica",
+    "widths": [
+      560,
+      840,
+      1122
+    ],
+    "w": 1122,
+    "h": 1402,
     "alt": ""
   }
 }
