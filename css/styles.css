@@ -776,3 +776,14 @@ html.no-scroll .ai-launch { visibility: hidden; }
 .stat dd strong::before { content: ""; display: inline-block; width: 14px; height: 2px; margin-right: 8px; vertical-align: middle; background: var(--steel); }
 .clients__note { margin-top: 32px; max-width: 46em; font-size: .9375rem; color: var(--muted); }
 @media (min-width: 900px) { .stats { grid-template-columns: repeat(3, 1fr); gap: var(--gap); } }
+
+/* Fila de logos de clientes: altura visual pareja según la forma del logo */
+.logos { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 34px; margin-top: clamp(28px, 5vw, 48px); }
+.logos__item { display: flex; align-items: center; opacity: .88; transition: opacity .25s; }
+.logos__item:hover { opacity: 1; }
+.logos__item img { width: auto; }
+.logos__item--tall img { height: clamp(48px, 12vw, 68px); }
+.logos__item--mid img { height: clamp(38px, 9vw, 54px); }
+.logos__item--wide img { height: clamp(16px, 4vw, 22px); }
+.logos__item--name { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 5.4vw, 2rem); color: var(--bone); line-height: 1; }
+@media (min-width: 900px) { .logos { gap: 28px 52px; } }
