@@ -777,13 +777,19 @@ html.no-scroll .ai-launch { visibility: hidden; }
 .clients__note { margin-top: 32px; max-width: 46em; font-size: .9375rem; color: var(--muted); }
 @media (min-width: 900px) { .stats { grid-template-columns: repeat(3, 1fr); gap: var(--gap); } }
 
-/* Fila de logos de clientes: altura visual pareja según la forma del logo */
-.logos { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 34px; margin-top: clamp(28px, 5vw, 48px); }
-.logos__item { display: flex; align-items: center; opacity: .88; transition: opacity .25s; }
-.logos__item:hover { opacity: 1; }
-.logos__item img { width: auto; }
-.logos__item--tall img { height: clamp(48px, 12vw, 68px); }
-.logos__item--mid img { height: clamp(38px, 9vw, 54px); }
-.logos__item--wide img { height: clamp(16px, 4vw, 22px); }
-.logos__item--name { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 5.4vw, 2rem); color: var(--bone); line-height: 1; }
-@media (min-width: 900px) { .logos { gap: 28px 52px; } }
+/* Logos de clientes: todos en blanco, en cinta que se desliza hacia la derecha sin fin (dos copias = bucle continuo) */
+.logos { display: flex; width: max-content; margin-top: clamp(32px, 5vw, 56px); padding-block: 8px; }
+.logos__track { display: flex; align-items: center; gap: clamp(40px, 8vw, 88px); padding-right: clamp(40px, 8vw, 88px); flex: none; }
+.logos__item { display: flex; align-items: center; opacity: .9; }
+.logos__item img { width: auto; display: block; }
+.logos__item--tall img { height: clamp(64px, 16vw, 92px); }
+.logos__item--mid img { height: clamp(46px, 11.5vw, 66px); }
+.logos__item--wide img { height: clamp(32px, 8vw, 46px); }
+.logos__item--xwide img { height: clamp(20px, 5vw, 28px); }
+.logos-wrap { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+@media (prefers-reduced-motion: no-preference) {
+  .logos { animation: logos-right 38s linear infinite; }
+  .logos:hover { animation-play-state: paused; }
+}
+@keyframes logos-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .logos { width: auto; flex-wrap: wrap; padding-inline: var(--gutter); } .logos__track[aria-hidden] { display: none; } .logos__track { flex-wrap: wrap; } }
